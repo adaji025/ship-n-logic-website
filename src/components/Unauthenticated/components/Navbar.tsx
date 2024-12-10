@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import styles from "./Navbar.module.css";
-import { Button } from "@mantine/core";
 import Logo from "../../../assets/svg/logo.svg";
 
 const navMenuItems = [
@@ -24,7 +23,6 @@ const navMenuItems = [
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const router = useLocation();
-  const navigate = useNavigate();
 
   return (
     <div className="z-[999] bg-white text-black  w-full fixed top-0 shadow">
@@ -52,6 +50,7 @@ const Navbar = () => {
           {navMenuItems.map((menu, idx) => (
             <HashLink smooth to={menu.url}>
               <div
+                onClick={() => setMenu(!menu)}
                 key={idx}
                 className={`flex gap-2 items-center relative font-semibold border-b border-transparent text-base md:text-lg cursor-pointer hover:border-pink hover:lg:text-primary-green-50 hover:lg:border-primary-green-50   transition- duration-200 ${
                   router.pathname === menu.url
@@ -64,7 +63,7 @@ const Navbar = () => {
             </HashLink>
           ))}
 
-          <div
+          {/* <div
             className="lg:hidden text-start font-semibold pb-4 cursor-pointer"
             onClick={() => navigate("/sign-in")}
           >
@@ -75,9 +74,9 @@ const Navbar = () => {
             onClick={() => navigate("/sign-up")}
           >
             Sign Up
-          </div>
+          </div> */}
         </div>
-        <div className="flex justify-end gap-5">
+        {/* <div className="flex justify-end gap-5">
           <Button
             size="md"
             className="bg-transparent hover:bg-primary/80 hidden lg:block text-black rounded-full duration-300"
@@ -92,7 +91,7 @@ const Navbar = () => {
           >
             Sign up
           </Button>
-        </div>
+        </div> */}
       </nav>
     </div>
   );
